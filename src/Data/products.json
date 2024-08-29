@@ -1,0 +1,21 @@
+[
+  {
+    "id": 1,
+    "title": "Cobra",
+    "description": "Comandante fuerzas del mal GI-JOE",
+    "code": 111,
+    "price": 1000,
+    "status": true,
+    "category": "toys",
+    "thumbnails": "Un path donde estan las imagenes"
+  },
+  {
+    "id": 4,
+    "title": "Leono",
+    "description": "Thundercats",
+    "code": "114",
+    "price": "888",
+    "status": true,
+    "category": "toys"
+  }
+]

@@ -16,23 +16,26 @@ const renderProducts = (data) => {
         card.innerHTML = `
                         <div>
                         <h3>Producto: ${item.title}</h3>          
-                        <p>ID: ${item.id}</p>
+                        <p>ID: ${item._id}</p>
                         <p>Descripcion: ${item.description}</p>
                         <p>Codigo: ${item.code}</p>
                         <p>Precio: ${item.price}</p>
                         <p>Categoria: ${item.category}</p>
+                        <p>Thumbnail: ${item.thumbnail}</p>
+                        <br>
+                        <button>Eliminar</button>                        
+                        <br>
+                        <br>
                         `
-        rtArray.appendChild(card); 
+            rtArray.appendChild(card); 
+        
+            card.querySelector("button").addEventListener("click", () => {
+                deleteProduct(item._id); 
+            })
         })
     }
 
-
-deleteBtn.addEventListener("click", () => {
-    deletingAProduct();
-})
-
-const deletingAProduct = () => {
-    let id = document.getElementById("id").value;
+const deleteProduct = (id) => {
     socket.emit("deleteProduct", id); 
 }
 

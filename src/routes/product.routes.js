@@ -1,12 +1,23 @@
 import { Router } from "express";
-import ProductManager from "../product-manager.js"
+//import ProductManager from "../DAO/FS/product-manager.js"
+import ProductManager from "../DAO/DB/product-manager-db.js";
 import express from "express";
 
-const productManager = new ProductManager ("./src/Data/products.json");
+//const productManager = new ProductManager ("./src/Data/products.json");
+const productManager = new ProductManager ();
 const router = Router();
 
 router.use(express.json());
 router.use(express.urlencoded({extended: true}));
+
+router.get ("/", async (req, res) =>{
+    let limit = req.query.limit || 2;//1; 
+    let page = req.query.page || 2;//1; 
+    let query = req.query.query || null; 
+    let sort = req.query.sort || null;
+    const products = await productManager.getPaginatedProducts(limit,page,query,sort);
+    res.json(products);
+})
 
 router.post("/", async (req, res) => {
     let content = req.body;
